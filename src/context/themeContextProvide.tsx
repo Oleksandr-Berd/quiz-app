@@ -18,6 +18,7 @@ export default class ThemeContextProvider extends Component<IProps, IState> {
       localStorage.setItem("theme", theme === "light" ? "dark" : "light");
     },
   };
+;
 
   render() {
     return (

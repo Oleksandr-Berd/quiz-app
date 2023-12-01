@@ -10,11 +10,12 @@ import ThemeContext from "./context/themeContext";
 const App:React.FC = () => {
     const { theme } = useContext(ThemeContext);
   const commonTheme = theme === "light" ? lightTheme : darkTheme;
+console.log(commonTheme);
 
   return (
     <>
       <ThemeProvider theme={commonTheme}>
-        <SharedLayout>
+        <SharedLayout >
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
