@@ -8,7 +8,7 @@ export const getAllData = async () => {
   try {
     const response = await instance.get(`/all`);
 
-    return response.data[0].quizzes;
+    return response.data;
   } catch (error: any) {
     return error;
   }

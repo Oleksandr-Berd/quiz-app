@@ -5,13 +5,12 @@ type Props = {
 };
 
 const TopicsList: React.FC<Props> = ({ topics }) => {
-  console.log(topics);
 
   return (
     <ul>
       {topics
         ? topics.map(({ title, icon }) => (
-            <SC.ListItem>
+            <SC.ListItem key={title}>
               <img src={icon} alt="icon" />
               <h3>{title}</h3>
             </SC.ListItem>

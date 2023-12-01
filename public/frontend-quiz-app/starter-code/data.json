@@ -1,6 +1,6 @@
-{
-    "quizzes": [
-        {
+
+    
+       [ {
             "title": "HTML",
             "icon": "./assets/images/icon-html.svg",
             "questions": [
@@ -425,4 +425,3 @@
             ]
         }
     ]
-}

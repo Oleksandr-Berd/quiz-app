@@ -9,7 +9,7 @@ import ThemeContext from "./context/themeContext";
 import { getAllData } from "./services/api";
 
 const App: React.FC = () => {
-  const [data, setData] = useState<null | []>(null);
+  const [data, setData] = useState<[] | null>(null);
   const { theme } = useContext(ThemeContext);
 
   const commonTheme = theme === "light" ? lightTheme : darkTheme;
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
    useEffect(() => {
      fetchData();
-   }, []);
+   }, []);  
 
   return (
     <>

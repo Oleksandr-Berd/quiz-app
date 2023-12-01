@@ -7,7 +7,6 @@ type Props = {
 
 const HomePage: React.FC<Props> = ({ data }) => {
  
-// const topics = data
 
   return (
     <SC.CommonCon>
