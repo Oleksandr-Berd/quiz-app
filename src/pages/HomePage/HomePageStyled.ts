@@ -19,7 +19,7 @@ font-family: "RubicRegular";
 font-weight: lighter;
 font-size: 40px;
 
-color: #fff;
+color: ${props => props.theme.color.text};
 
 & > span{
     font-family: "RubicMedium";
@@ -32,5 +32,5 @@ export const Text = styled.p`
   font-family: "RubicRegular";
   line-height: 1.5;
 
-  color: #abc1e1;
+  color: ${props => props.theme.color.smallText};
 `;

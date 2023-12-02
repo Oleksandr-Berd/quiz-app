@@ -9,16 +9,19 @@ export const ListItem = styled.li`
   padding-bottom: 12px;
   padding-left: 12px;
 
-  background-color: #3b4d66;
+  background-color: ${props => props.theme.color.itemBg};
 
   &:not(:last-child) {
     margin-bottom: 12px;
   }
 
   & > h3 {
+    margin-top: 11px;
+    margin-left: 16px;
+
     font-family: "RubicMedium";
     font-size: 18px;
 
-    color: #fff;
+    color: ${props => props.theme.color.text};
   }
 `;

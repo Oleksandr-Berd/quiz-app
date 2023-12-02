@@ -13,11 +13,11 @@ padding-right: 24px;
 `
 
 export const SwitchCon = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-& > img:first-child{
-margin-right: 8px;
-}
-`
+  & > img:first-of-type {
+    margin-right: 8px;
+  }
+`;
