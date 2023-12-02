@@ -9,8 +9,18 @@ import sunLight from "../../assets/images/icon-sun-light.svg";
 import { useContext } from "react";
 import ThemeContext from "../../context/themeContext";
 
-const Header: React.FC = () => {
+type Props = {
+  chosenTopic: {
+    icon: string;
+    title: string
+  } | null;
+};
+
+const Header: React.FC<Props> = ({ chosenTopic }) => {
   const { theme, toggle } = useContext(ThemeContext);
+
+
+
 
   const toggleTheme = () => {
     toggle(theme);
@@ -18,6 +28,12 @@ const Header: React.FC = () => {
 
   return (
     <SC.HeaderStyled>
+      {chosenTopic ? (
+        <div>
+          <img src={chosenTopic.icon} alt="icon" />
+          <p>{chosenTopic.title}</p>
+        </div>
+      ) : null}
       <SC.SwitchCon>
         <img src={theme === "light" ? sunDark : sunLight} alt="sun" />
         <Form>

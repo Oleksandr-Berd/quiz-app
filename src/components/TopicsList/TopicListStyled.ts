@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
 
+export const TopicList = styled.ul`
+  padding-left: 0;
+
+  margin-bottom: 0;
+`;
+
 export const ListItem = styled.li`
   display: flex;
   flex-direction: row;
@@ -9,19 +15,23 @@ export const ListItem = styled.li`
   padding-bottom: 12px;
   padding-left: 12px;
 
-  background-color: ${props => props.theme.color.itemBg};
+  background-color: ${(props) => props.theme.color.itemBg};
+
+  border-radius: 12px;
 
   &:not(:last-child) {
     margin-bottom: 12px;
   }
 
-  & > h3 {
+  & > a {
     margin-top: 11px;
     margin-left: 16px;
+
+    text-decoration: none;
 
     font-family: "RubicMedium";
     font-size: 18px;
 
-    color: ${props => props.theme.color.text};
+    color: ${(props) => props.theme.color.text};
   }
 `;

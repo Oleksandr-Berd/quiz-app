@@ -10,9 +10,10 @@ import ThemeContext from "../../context/themeContext";
 
 type Props = {
   children: React.ReactNode;
+  chosenTopic: { icon: string; title: string } | null;
 };
 
-const SharedLayout: React.FC<Props> = ({ children }) => {
+const SharedLayout: React.FC<Props> = ({ children, chosenTopic}) => {
   const { theme } = useContext(ThemeContext);
 
 
@@ -21,7 +22,7 @@ const SharedLayout: React.FC<Props> = ({ children }) => {
     <SC.SharedLayoutStyled
       bg={theme === "light" ? bgMobileLight : bgMobileDark}
     >
-      <Header />
+      <Header chosenTopic={chosenTopic} />
       {children}
     </SC.SharedLayoutStyled>
   );
