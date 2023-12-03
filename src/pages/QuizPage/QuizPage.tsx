@@ -5,6 +5,7 @@ import error from "../../assets/images/icon-error.svg";
 type T = {
   question: string;
   options: [];
+  answer: string;
 };
 
 type Props = {
@@ -15,10 +16,13 @@ type Props = {
 
 const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
   const [chosenOption, setChosenOption] = useState<string | null>(null);
+  const [correct, setCorrect] = useState<number>(0);
+  const [wrong, setWrong] = useState<number>(0);
   const [noOption, setNoOption] = useState<boolean | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(
     chosenTopic?.questions[0]
   );
+  const [next, setNext] = useState<boolean>(false)
 
   const gradient =
     ((chosenTopic!.questions.indexOf(currentQuestion!) + 1) /
@@ -42,11 +46,24 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
   const handleSubmitAnswer = () => {
     if (!chosenOption) {
       setNoOption(true);
+    } else if (chosenOption === currentQuestion!.answer) {
+      setCorrect((prev) => prev + 1);
+      setNext(true)
     } else {
-      setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
-      setChosenOption(null)
+      setWrong((prev) => prev + 1);
+       setNext(true);
     }
   };
+
+  const handleNextQuestion = () => {
+    setChosenOption(null);
+    setNext(false)
+    setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
+  };
+
+console.log("correct:", correct);
+console.log("wrong:", wrong);
+
 
 
   return (
@@ -60,8 +77,15 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
       </SC.TextWrapper>
       <SC.OptionsList>
         {currentQuestion!.options.map((el, idx) => (
-          <SC.OptionItem key={el} data-title={el} onClick={chooseOption}>
-            <SC.LetterWrapper>
+          <SC.OptionItem
+            key={el}
+            data-title={el}
+            onClick={chooseOption}
+            stressedColor={el === chosenOption ? "stressed" : "none"}
+          >
+            <SC.LetterWrapper
+              stressedColor={el === chosenOption ? "stressed" : "none"}
+            >
               {idx === 0
                 ? "A"
                 : idx === 1
@@ -76,9 +100,16 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
           </SC.OptionItem>
         ))}
       </SC.OptionsList>
-      <SC.SubmitButton onClick={handleSubmitAnswer}>
-        Submit Answer
-      </SC.SubmitButton>
+      {!next ? (
+        <SC.SubmitButton onClick={handleSubmitAnswer}>
+          Submit Answer
+        </SC.SubmitButton>
+      ) : (
+        <SC.SubmitButton onClick={handleNextQuestion}>
+         Next Question
+        </SC.SubmitButton>
+      )}
+
       <SC.ErrorWrapper visibility={!noOption ? "hidden" : "none"}>
         <img src={error} alt="error" />
         <p>Please select an answer</p>

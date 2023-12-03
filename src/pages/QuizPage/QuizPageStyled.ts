@@ -4,6 +4,7 @@ type Style = {
   gradient: string;
   gradientLeft: string;
   visibility: string;
+  stressedColor: string;
 };
 
 export const CommonCon = styled.div`
@@ -40,7 +41,7 @@ export const Question = styled.h3`
   color: ${(props) => props.theme.color.text};
 `;
 
-export const Scale = styled.div<Partial <Style>>`
+export const Scale = styled.div<Partial<Style>>`
   height: 16px;
 
   background: linear-gradient(
@@ -58,7 +59,7 @@ export const OptionsList = styled.ul`
   margin-bottom: 12px;
 `;
 
-export const OptionItem = styled.li`
+export const OptionItem = styled.li<Partial<Style>>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -72,6 +73,8 @@ export const OptionItem = styled.li`
   background-color: ${(props) => props.theme.color.itemBg};
 
   border-radius: 12px;
+  border: ${(props) =>
+    props.stressedColor === "stressed" ? "3px solid #A729F5" : "none"};
 
   &:not(:last-child) {
     margin-bottom: 12px;
@@ -88,7 +91,7 @@ export const Option = styled.p`
   color: ${(props) => props.theme.color.text};
 `;
 
-export const LetterWrapper = styled.div`
+export const LetterWrapper = styled.div<Partial<Style>>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,8 +102,10 @@ export const LetterWrapper = styled.div`
   font-size: 18px;
   font-family: "RubicMedium";
 
-  color: #626c7f;
-  background-color: #f4f6fa;
+  color: ${(props) =>
+    props.stressedColor === "stressed" ? "#fff" : "#626c7f"};
+  background-color: ${(props) =>
+    props.stressedColor === "stressed" ? "#A729F5" : "#f4f6fa"};
 
   border-radius: 6px;
 `;
@@ -122,7 +127,7 @@ export const SubmitButton = styled.button`
   border-radius: 12px;
 `;
 
-export const ErrorWrapper = styled.div<Partial <Style>>`
+export const ErrorWrapper = styled.div<Partial<Style>>`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -133,7 +138,8 @@ export const ErrorWrapper = styled.div<Partial <Style>>`
   flex-direction: row;
   align-items: center;
 
-visibility: ${props => props.visibility === "hidden" ? "hidden" : "visible"};
+  visibility: ${(props) =>
+    props.visibility === "hidden" ? "hidden" : "visible"};
 
   & > p {
     margin-bottom: 0;
