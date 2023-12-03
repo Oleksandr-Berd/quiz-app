@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
+
 export const TopicList = styled.ul`
   padding-left: 0;
 
@@ -34,4 +35,22 @@ export const ListItem = styled.li`
 
     color: ${(props) => props.theme.color.text};
   }
+`;
+
+export const IconWrapper = styled.div`
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  background-color: ${(props) =>
+    props.title === "HTML"
+      ? "#FFF1E9"
+      : props.title === "CSS"
+      ? "#E0FDEF"
+      : props.title === "JavaScript"
+      ? "#EBF0FF"
+      : "#F6E7FF"};
+
+  border-radius: 6px;
 `;

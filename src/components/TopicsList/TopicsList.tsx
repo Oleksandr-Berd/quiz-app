@@ -12,12 +12,16 @@ const TopicsList: React.FC<Props> = ({ topics, handleTopic }) => {
     handleTopic(selectedTitle!);
   };
 
+
+
   return (
     <SC.TopicList>
       {topics
         ? topics.map(({ title, icon }) => (
             <SC.ListItem key={title}>
-              <img src={icon} alt="icon" />
+              <SC.IconWrapper title={title}>
+                <img src={icon} alt="icon" />
+              </SC.IconWrapper>
               <NavLink to="/quiz" onClick={chooseTopic} data-title={title}>
                 {title}
               </NavLink>

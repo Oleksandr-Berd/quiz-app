@@ -20,19 +20,36 @@ const Header: React.FC<Props> = ({ chosenTopic }) => {
   const { theme, toggle } = useContext(ThemeContext);
 
 
+let iconColor;
 
+switch (chosenTopic?.title) {
+  case "HTML":
+    iconColor = "#FFF1E9";
+    break;
+  case "CSS":
+    iconColor = "#E0FDEF";
+    break;
+  case "JavaScript":
+    iconColor = "#EBF0FF";
+    break;
+  case "Accessibility":
+    iconColor = "#F6E7FF";
+    break;
+}
 
   const toggleTheme = () => {
     toggle(theme);
   };
 
   return (
-    <SC.HeaderStyled>
+    <SC.HeaderStyled flex={chosenTopic ? "space-between" : "flex-end"}>
       {chosenTopic ? (
-        <div>
-          <img src={chosenTopic.icon} alt="icon" />
-          <p>{chosenTopic.title}</p>
-        </div>
+        <SC.TopicCon>
+          <SC.IconWrapper bg={iconColor}>
+            <img src={chosenTopic.icon} alt="icon" />
+          </SC.IconWrapper>
+          <SC.TopicTitle>{chosenTopic.title}</SC.TopicTitle>
+        </SC.TopicCon>
       ) : null}
       <SC.SwitchCon>
         <img src={theme === "light" ? sunDark : sunLight} alt="sun" />
