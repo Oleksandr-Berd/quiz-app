@@ -14,6 +14,9 @@ const App: React.FC = () => {
   const [chosenTopic, setChosenTopic] = useState<{
     icon: string;
     title: string;
+    questions:[
+    
+    ];
   } | null>(null);
   const { theme } = useContext(ThemeContext);
   const location = useLocation()
