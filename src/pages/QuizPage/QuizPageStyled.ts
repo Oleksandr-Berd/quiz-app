@@ -3,9 +3,12 @@ import styled from "@emotion/styled";
 type Style = {
   gradient: string;
   gradientLeft: string;
+  visibility: string;
 };
 
 export const CommonCon = styled.div`
+  position: relative;
+
   padding-top: 32px;
   padding-bottom: 139px;
   padding-left: 24px;
@@ -37,7 +40,7 @@ export const Question = styled.h3`
   color: ${(props) => props.theme.color.text};
 `;
 
-export const Scale = styled.div<Style>`
+export const Scale = styled.div<Partial <Style>>`
   height: 16px;
 
   background: linear-gradient(
@@ -76,7 +79,7 @@ export const OptionItem = styled.li`
 `;
 
 export const Option = styled.p`
-  margin-top: 11px;
+  margin-bottom: 0px;
   margin-left: 16px;
 
   font-size: 18px;
@@ -117,4 +120,28 @@ export const SubmitButton = styled.button`
   background-color: #a729f5;
 
   border-radius: 12px;
+`;
+
+export const ErrorWrapper = styled.div<Partial <Style>>`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  transform: translateX(67px) translateY(-95px);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+visibility: ${props => props.visibility === "hidden" ? "hidden" : "visible"};
+
+  & > p {
+    margin-bottom: 0;
+    margin-left: 8px;
+
+    font-size: 18px;
+    font-family: "RubicRegular";
+
+    color: ${(props) => props.theme.color.text};
+  }
 `;

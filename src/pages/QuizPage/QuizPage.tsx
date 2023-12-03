@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as SC from "./QuizPageStyled";
+import error from "../../assets/images/icon-error.svg";
 
 type T = {
   question: string;
@@ -14,7 +15,7 @@ type Props = {
 
 const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
   const [chosenOption, setChosenOption] = useState<string | null>(null);
-
+  const [noOption, setNoOption] = useState<boolean | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(
     chosenTopic?.questions[0]
   );
@@ -32,14 +33,21 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
     "%";
 
   const chooseOption = (evt: any) => {
+    setNoOption(false);
     setChosenOption(evt.currentTarget.getAttribute("data-title"));
   };
 
   const currentIdx = chosenTopic!.questions.indexOf(currentQuestion!);
 
   const handleSubmitAnswer = () => {
-    setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
+    if (!chosenOption) {
+      setNoOption(true);
+    } else {
+      setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
+      setChosenOption(null)
+    }
   };
+
 
   return (
     <SC.CommonCon>
@@ -71,6 +79,10 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
       <SC.SubmitButton onClick={handleSubmitAnswer}>
         Submit Answer
       </SC.SubmitButton>
+      <SC.ErrorWrapper visibility={!noOption ? "hidden" : "none"}>
+        <img src={error} alt="error" />
+        <p>Please select an answer</p>
+      </SC.ErrorWrapper>
     </SC.CommonCon>
   );
 };

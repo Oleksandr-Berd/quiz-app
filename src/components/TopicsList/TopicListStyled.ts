@@ -25,7 +25,7 @@ export const ListItem = styled.li`
   }
 
   & > a {
-    margin-top: 11px;
+    margin-bottom: 0px;
     margin-left: 16px;
 
     text-decoration: none;
