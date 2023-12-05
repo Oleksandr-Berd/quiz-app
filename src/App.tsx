@@ -8,62 +8,70 @@ import darkTheme from "./utils/styles/darkTheme";
 import ThemeContext from "./context/themeContext";
 import { getAllData } from "./services/api";
 import QuizPage from "./pages/QuizPage/QuizPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const App: React.FC = () => {
   const [data, setData] = useState<[] | null>(null);
+  const [isError, setIserror] = useState<string | null>(null);
   const [chosenTopic, setChosenTopic] = useState<{
     icon: string;
     title: string;
-    questions:[
-    
-    ];
+    questions: [];
   } | null>(null);
   const { theme } = useContext(ThemeContext);
-  const location = useLocation()
+  const location = useLocation();
 
-useEffect(()=>{if (location.pathname === "/") {
-  setChosenTopic(null);
-}  },[location])
-
-
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setChosenTopic(null);
+    }
+  }, [location]);
 
   const commonTheme = theme === "light" ? lightTheme : darkTheme;
 
   const fetchData = async () => {
     const result = await getAllData();
 
-    setData(result);
+    if (result.message) {
+      setIserror(result.message);
+    } else {
+      setData(result);
+    }
   };
 
-   useEffect(() => {
-     fetchData();
-   }, []);
-   
-   const handleTopic = (chosenTitle:string) => {
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const chosen = data?.filter(({title})=>title === chosenTitle)
+  const handleTopic = (chosenTitle: string) => {
+    const chosen = data?.filter(({ title }) => title === chosenTitle);
 
-    setChosenTopic(chosen![0])
-   }
-
-
+    setChosenTopic(chosen![0]);
+  };  
 
   return (
     <>
       <ThemeProvider theme={commonTheme}>
         <SharedLayout chosenTopic={chosenTopic}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage data={data ? data : null} handleTopic={handleTopic} />
-              }
-            />
-            <Route
-              path="/quiz"
-              element={<QuizPage chosenTopic={chosenTopic} />}
-            />
-          </Routes>
+          {isError ? (
+            <ErrorPage message={isError} />
+          ) : (
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomePage
+                    data={data ? data : null}
+                    handleTopic={handleTopic}
+                  />
+                }
+              />
+              <Route
+                path="/quiz"
+                element={<QuizPage chosenTopic={chosenTopic} />}
+              />
+            </Routes>
+          )}
         </SharedLayout>
       </ThemeProvider>
     </>
