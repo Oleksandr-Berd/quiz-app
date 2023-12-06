@@ -1,6 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import SharedLayout from "./layouts/SharedLayout/SharedLayout";
-import HomePage from "./pages/HomePage/HomePage";
 import { useContext, useEffect, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 import lightTheme from "./utils/styles/lightTheme";
@@ -9,6 +8,7 @@ import ThemeContext from "./context/themeContext";
 import { getAllData } from "./services/api";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 const App: React.FC = () => {
   const [data, setData] = useState<[] | null>(null);

@@ -61,8 +61,10 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
   const handleNextQuestion = () => {
     setChosenOption(null);
     setNext(false)
+    setWrong(0)
     setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
   };
+
 console.log(wrong);
 
 
@@ -93,10 +95,22 @@ console.log(wrong);
                 key={el}
                 data-title={el}
                 onClick={chooseOption}
-                stressedColor={el === chosenOption ? "stressed" : "none"}
+                stressedColor={
+                  el === chosenOption && !wrong
+                    ? "stressed"
+                    : el === chosenOption && wrong !== 0
+                    ? "wrong"
+                    : "none"
+                }
               >
                 <SC.LetterWrapper
-                  stressedColor={el === chosenOption ? "stressed" : "none"}
+                  stressedColor={
+                    el === chosenOption && !wrong
+                      ? "stressed"
+                      : el === chosenOption && wrong !== 0
+                      ? "wrong"
+                      : "none"
+                  }
                 >
                   {idx === 0
                     ? "A"

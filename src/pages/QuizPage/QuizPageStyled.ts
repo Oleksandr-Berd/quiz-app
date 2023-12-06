@@ -74,7 +74,11 @@ export const OptionItem = styled.li<Partial<Style>>`
 
   border-radius: 12px;
   border: ${(props) =>
-    props.stressedColor === "stressed" ? "3px solid #A729F5" : "none"};
+    props.stressedColor === "stressed"
+      ? "3px solid #A729F5"
+      : props.stressedColor === "wrong"
+      ? "3px solid #EE5454"
+      : "none"};
 
   &:not(:last-child) {
     margin-bottom: 12px;
@@ -103,9 +107,15 @@ export const LetterWrapper = styled.div<Partial<Style>>`
   font-family: "RubicMedium";
 
   color: ${(props) =>
-    props.stressedColor === "stressed" ? "#fff" : "#626c7f"};
+    props.stressedColor === "stressed" || props.stressedColor === "wrong"
+      ? "#fff"
+      : "#626c7f"};
   background-color: ${(props) =>
-    props.stressedColor === "stressed" ? "#A729F5" : "#f4f6fa"};
+    props.stressedColor === "stressed"
+      ? "#A729F5"
+      : props.stressedColor === "wrong"
+      ? "#EE5454"
+      : "#f4f6fa"};
 
   border-radius: 6px;
 `;

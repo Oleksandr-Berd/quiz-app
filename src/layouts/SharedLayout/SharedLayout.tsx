@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
+import { Dna } from "react-loader-spinner";
 
 import * as SC from "./SharedLayoutStyled";
 
@@ -22,6 +23,14 @@ const SharedLayout: React.FC<Props> = ({ children, chosenTopic}) => {
     <SC.SharedLayoutStyled
       bg={theme === "light" ? bgMobileLight : bgMobileDark}
     >
+      <Suspense fallback={<Dna
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="dna-loading"
+            wrapperStyle={{}}
+            wrapperClass="dna-wrapper"
+        />}></Suspense>
       <Header chosenTopic={chosenTopic} />
       {children}
     </SC.SharedLayoutStyled>
