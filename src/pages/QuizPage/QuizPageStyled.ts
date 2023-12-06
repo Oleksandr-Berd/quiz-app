@@ -78,6 +78,8 @@ export const OptionItem = styled.li<Partial<Style>>`
       ? "3px solid #A729F5"
       : props.stressedColor === "wrong"
       ? "3px solid #EE5454"
+      : props.stressedColor === "correct"
+      ? "3px solid #26D782"
       : "none"};
 
   &:not(:last-child) {
@@ -107,7 +109,9 @@ export const LetterWrapper = styled.div<Partial<Style>>`
   font-family: "RubicMedium";
 
   color: ${(props) =>
-    props.stressedColor === "stressed" || props.stressedColor === "wrong"
+    props.stressedColor === "stressed" ||
+    props.stressedColor === "wrong" ||
+    props.stressedColor === "correct"
       ? "#fff"
       : "#626c7f"};
   background-color: ${(props) =>
@@ -115,6 +119,8 @@ export const LetterWrapper = styled.div<Partial<Style>>`
       ? "#A729F5"
       : props.stressedColor === "wrong"
       ? "#EE5454"
+      : props.stressedColor === "correct"
+      ? " #26D782"
       : "#f4f6fa"};
 
   border-radius: 6px;

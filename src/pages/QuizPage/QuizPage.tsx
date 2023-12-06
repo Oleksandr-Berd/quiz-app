@@ -18,6 +18,7 @@ type Props = {
 };
 
 const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
+  const [isCorrect, setIsCorrect] = useState<boolean>(false)
   const [chosenOption, setChosenOption] = useState<string | null>(null);
   const [correct, setCorrect] = useState<number>(0);
   const [wrong, setWrong] = useState<number>(0)
@@ -51,6 +52,7 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
       setNoOption(true);
     } else if (chosenOption === currentQuestion!.answer) {
       setCorrect((prev) => prev + 1);
+      setIsCorrect(true)
       setNext(true)
     } else {
       setWrong((prev) => prev + 1);
@@ -62,6 +64,7 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
     setChosenOption(null);
     setNext(false)
     setWrong(0)
+    setIsCorrect(false)
     setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
   };
 
@@ -96,19 +99,23 @@ console.log(wrong);
                 data-title={el}
                 onClick={chooseOption}
                 stressedColor={
-                  el === chosenOption && !wrong
+                  el === chosenOption && !wrong && !isCorrect
                     ? "stressed"
                     : el === chosenOption && wrong !== 0
                     ? "wrong"
+                    : el === chosenOption && isCorrect
+                    ? "correct"
                     : "none"
                 }
               >
                 <SC.LetterWrapper
                   stressedColor={
-                    el === chosenOption && !wrong
+                    el === chosenOption && !wrong && !isCorrect
                       ? "stressed"
                       : el === chosenOption && wrong !== 0
                       ? "wrong"
+                      : el === chosenOption && isCorrect
+                      ? "correct"
                       : "none"
                   }
                 >
