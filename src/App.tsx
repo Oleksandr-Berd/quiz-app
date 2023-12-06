@@ -1,7 +1,9 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import SharedLayout from "./layouts/SharedLayout/SharedLayout";
 import { useContext, useEffect, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Dna } from "react-loader-spinner";
+
+import SharedLayout from "./layouts/SharedLayout/SharedLayout";
 import lightTheme from "./utils/styles/lightTheme";
 import darkTheme from "./utils/styles/darkTheme";
 import ThemeContext from "./context/themeContext";
@@ -12,6 +14,7 @@ import HomePage from "./pages/HomePage/HomePage";
 
 const App: React.FC = () => {
   const [data, setData] = useState<[] | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIserror] = useState<string | null>(null);
   const [chosenTopic, setChosenTopic] = useState<{
     icon: string;
@@ -20,6 +23,8 @@ const App: React.FC = () => {
   } | null>(null);
   const { theme } = useContext(ThemeContext);
   const location = useLocation();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -30,6 +35,7 @@ const App: React.FC = () => {
   const commonTheme = theme === "light" ? lightTheme : darkTheme;
 
   const fetchData = async () => {
+    setIsLoading(true);
     const result = await getAllData();
 
     if (result.message) {
@@ -41,18 +47,29 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchData();
+    setIsLoading(false);
   }, []);
 
   const handleTopic = (chosenTitle: string) => {
     const chosen = data?.filter(({ title }) => title === chosenTitle);
 
     setChosenTopic(chosen![0]);
-  };  
+  };
 
   return (
     <>
       <ThemeProvider theme={commonTheme}>
         <SharedLayout chosenTopic={chosenTopic}>
+          {isLoading ? (
+            <Dna
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="dna-loading"
+              wrapperStyle={{}}
+              wrapperClass="dna-wrapper"
+            />
+          ) : null}
           {isError ? (
             <ErrorPage message={isError} />
           ) : (

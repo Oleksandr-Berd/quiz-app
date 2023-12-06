@@ -50,6 +50,7 @@ export const Scale = styled.div<Partial<Style>>`
     rgb(167, 41, 245) ${(props) => props.gradient}
   );
 
+  background-repeat: no-repeat;
   border-radius: 999px;
 `;
 
@@ -92,10 +93,15 @@ position: relative;
     position: absolute;
     top:0;
     right:0;
+
+    /* transform: translateX(-8px) translateY(10px); */
+    transform: translateX(-25%) translateY(25%);
 }
 `;
 
 export const Option = styled.p`
+max-width: 60%;
+
   margin-bottom: 0px;
   margin-left: 16px;
 
@@ -145,7 +151,7 @@ export const SubmitButton = styled.button`
   font-size: 18px;
   font-family: "RubicMedium";
 
-  color: ${(props) => props.theme.color.text};
+  color: #fff;
   background-color: #a729f5;
 
   border-radius: 12px;

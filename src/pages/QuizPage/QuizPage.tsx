@@ -31,7 +31,7 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
   );
   const [next, setNext] = useState<boolean>(false)
 
-  const gradient =
+  const gradient = 
     ((chosenTopic!.questions.indexOf(currentQuestion!) + 1) /
       chosenTopic!.questions.length) *
       100 +
@@ -42,6 +42,13 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
       chosenTopic!.questions.length) *
       100 +
     "%";
+
+  
+
+console.log(gradient);
+console.log(gradientLeft);
+
+
 
   const chooseOption = (evt: any) => {
     setNoOption(false);
@@ -70,6 +77,7 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
     setIsCorrect(false)
     setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
   };
+
 
   return (
     <SC.CommonCon>
@@ -108,7 +116,12 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
                     : "none"
                 }
               >
-                {el === chosenOption && wrong ?  <img src={wrongIcon} alt="wrong" /> : null}
+                {el === chosenOption && wrong ? (
+                  <img src={wrongIcon} alt="wrong" />
+                ) : null}
+                {el === currentQuestion!.answer && chosenOption && (wrong || isCorrect) ? (
+                  <img src={correctIcon} alt="correct" />
+                ) : null}
                 <SC.LetterWrapper
                   stressedColor={
                     el === chosenOption && !wrong && !isCorrect
