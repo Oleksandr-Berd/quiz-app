@@ -1,6 +1,9 @@
 import { useState } from "react";
 import * as SC from "./QuizPageStyled";
 import error from "../../assets/images/icon-error.svg";
+import wrongIcon from "../../assets/images/icon-incorrect.svg"
+import correctIcon from "../../assets/images/icon-correct.svg"
+
 import Result from "../../components/Result/Result";
 
 type T = {
@@ -68,9 +71,6 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
     setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
   };
 
-console.log(wrong);
-
-
   return (
     <SC.CommonCon>
       {!currentQuestion ? (
@@ -101,13 +101,14 @@ console.log(wrong);
                 stressedColor={
                   el === chosenOption && !wrong && !isCorrect
                     ? "stressed"
-                    : el === chosenOption && wrong !== 0
+                    : el === chosenOption && wrong
                     ? "wrong"
                     : el === chosenOption && isCorrect
                     ? "correct"
                     : "none"
                 }
               >
+                {el === chosenOption && wrong ?  <img src={wrongIcon} alt="wrong" /> : null}
                 <SC.LetterWrapper
                   stressedColor={
                     el === chosenOption && !wrong && !isCorrect

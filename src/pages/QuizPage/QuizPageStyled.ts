@@ -60,6 +60,8 @@ export const OptionsList = styled.ul`
 `;
 
 export const OptionItem = styled.li<Partial<Style>>`
+position: relative;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -85,6 +87,12 @@ export const OptionItem = styled.li<Partial<Style>>`
   &:not(:last-child) {
     margin-bottom: 12px;
   }
+
+& > img{
+    position: absolute;
+    top:0;
+    right:0;
+}
 `;
 
 export const Option = styled.p`
