@@ -20,11 +20,23 @@ export const ListItem = styled.li`
 
   border-radius: 12px;
 
+  @media (min-width: 1440px) {
+    width: 564px;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
+
   &:not(:last-child) {
     margin-bottom: 12px;
 
-    @media (min-width: 768px){
+    @media (min-width: 768px) {
       margin-bottom: 24px;
+
+      &:hover{
+        cursor: pointer;
+      }
     }
   }
 
@@ -39,7 +51,7 @@ export const ListItem = styled.li`
 
     color: ${(props) => props.theme.color.text};
 
-    @media (min-width: 768px){
+    @media (min-width: 768px) {
       margin-left: 32px;
 
       font-size: 28px;
@@ -69,5 +81,12 @@ export const IconWrapper = styled.div`
     padding-bottom: 8px;
     padding-left: 8px;
     padding-right: 8px;
+  }
+
+  @media (min-width: 1440px) {
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
   }
 `;

@@ -17,7 +17,14 @@ export const CommonCon = styled.div`
     padding-right: 0;
   }
 
-  & > a {
+  @media (min-width: 1440px) {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  & a {
     width: 100%;
 
     display: inline-block;
@@ -44,6 +51,18 @@ export const CommonCon = styled.div`
 
       border-radius: 24px;
     }
+
+    @media (min-width: 1440px) {
+      border-radius: 24px;
+      transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      &:hover {
+        background-color: #a729f5;
+        filter: sepia(60%);
+
+        transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+    }
   }
 `;
 
@@ -64,6 +83,12 @@ export const Title = styled.h2`
 
     font-size: 64px;
   }
+
+  @media (min-width: 1440px) {
+    width: 450px;
+
+    margin-right: 143px;
+  }
 `;
 
 export const ScoreWrapper = styled.div`
@@ -83,6 +108,15 @@ export const ScoreWrapper = styled.div`
     padding-bottom: 48px;
 
     margin-bottom: 32px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 564px;
+
+    padding-left: 156px;
+    padding-right: 156px;
+
+    border-radius: 24px;
   }
 `;
 

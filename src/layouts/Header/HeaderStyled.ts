@@ -23,6 +23,12 @@ export const HeaderStyled = styled.header<Partial<Style>>`
     padding-left: 64px;
     padding-right: 64px;
   }
+
+  @media (min-width: 1440px){
+    padding-top: 83px;
+    padding-left: 140px;
+    padding-right: 140px;
+  }
 `;
 
 export const SwitchCon = styled.div`

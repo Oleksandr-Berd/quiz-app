@@ -6,6 +6,7 @@ type Style = {
   gradientLeft: string;
   visibility: string;
   stressedColor: string;
+  isHover:string;
 };
 
 export const CommonCon = styled.div`
@@ -22,6 +23,17 @@ export const CommonCon = styled.div`
     padding-left: 64px;
     padding-right: 64px;
   }
+
+  @media (min-width: 1440px) {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+
+    padding-top: 85px;
+    padding-bottom: 172px;
+    padding-left: 140px;
+    padding-right: 140px;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -29,6 +41,13 @@ export const TextWrapper = styled.div`
 
   @media (min-width: 768px) {
     margin-bottom: 64px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 465px;
+
+    margin-bottom: 0;
+    margin-right: 131px;
   }
 `;
 
@@ -63,6 +82,10 @@ export const Question = styled.h3`
 
     font-size: 36px;
   }
+
+  @media (min-width: 1440px) {
+    margin-bottom: 180px;
+  }
 `;
 
 export const Scale = styled(ProgressBar)`
@@ -79,10 +102,8 @@ export const Scale = styled(ProgressBar)`
 export const OptionsList = styled.ul`
   padding-left: 0;
 
-  margin-bottom: 12px;
-
-  @media (min-width: 768px) {
-    margin-bottom: 32px;
+  @media (min-width: 1440px) {
+    width: 564px;
   }
 `;
 
@@ -92,8 +113,6 @@ export const OptionItem = styled.li<Partial<Style>>`
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  height: 64px;
 
   padding-top: 12px;
   padding-bottom: 12px;
@@ -111,8 +130,34 @@ export const OptionItem = styled.li<Partial<Style>>`
       ? "3px solid #26D782"
       : "none"};
 
+  @media (min-width: 1440px) {
+    transition: border 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    & > div {
+      transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1),
+        color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    &:hover {
+      border: ${(props) =>
+        props.isHover === "hover" ? "3px solid #a729f5" : ""};
+
+      cursor: ${(props) => (props.isHover === "hover" ? "pointer" : "")};
+
+      transition: border 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      & > div {
+        background-color: ${(props) =>
+          props.isHover === "hover" ? "#a729f5" : ""};
+        color: ${(props) =>
+          props.isHover === "hover" ? "#fff" : ""};
+        transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1)
+          color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+    }
+  }
+
   @media (min-width: 768px) {
-    height: 80px;
   }
 
   &:not(:last-child) {
@@ -128,8 +173,7 @@ export const OptionItem = styled.li<Partial<Style>>`
     top: 0;
     right: 0;
 
-    /* transform: translateX(-8px) translateY(10px); */
-    transform: translateX(-25%) translateY(25%);
+    transform: translateX(-50%) translateY(50%);
   }
 `;
 
@@ -185,6 +229,7 @@ export const LetterWrapper = styled.div<Partial<Style>>`
 
     font-size: 28px;
   }
+
 `;
 
 export const SubmitButton = styled.button`
@@ -192,6 +237,8 @@ export const SubmitButton = styled.button`
 
   padding-top: 19px;
   padding-bottom: 19px;
+
+  margin-top: 12px;
 
   text-align: center;
 
@@ -203,11 +250,25 @@ export const SubmitButton = styled.button`
 
   border-radius: 12px;
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     padding-top: 32px;
     padding-bottom: 32px;
 
+    margin-top: 32px;
+
     font-size: 28px;
+  }
+
+  @media (min-width: 1440px) {
+    border-radius: 24px;
+    transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    &:hover {
+      background-color: #a729f5;
+      filter: sepia(60%);
+
+      transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
   }
 `;
 
@@ -216,7 +277,7 @@ export const ErrorWrapper = styled.div<Partial<Style>>`
   bottom: 0;
   left: 0;
 
-  transform: translateX(226px) translateY(-59px);
+  transform: translateX(67px) translateY(-95px);
 
   display: flex;
   flex-direction: row;
@@ -224,6 +285,14 @@ export const ErrorWrapper = styled.div<Partial<Style>>`
 
   visibility: ${(props) =>
     props.visibility === "hidden" ? "hidden" : "visible"};
+
+  @media (min-width: 768px) {
+    transform: translateX(226px) translateY(-59px);
+  }
+
+  @media (min-width: 1440px) {
+    transform: translateX(908px) translateY(-102px);
+  }
 
   & > p {
     margin-bottom: 0;
@@ -234,9 +303,9 @@ export const ErrorWrapper = styled.div<Partial<Style>>`
 
     color: ${(props) => props.theme.color.text};
 
-    @media (min-width: 768px){
-        font-size: 24px;
-        line-height: 1.5;
+    @media (min-width: 768px) {
+      font-size: 24px;
+      line-height: 1.5;
     }
   }
 `;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import * as SC from "./QuizPageStyled";
 import error from "../../assets/images/icon-error.svg";
@@ -33,9 +33,6 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
     chosenTopic?.questions[0]
   );
   const [next, setNext] = useState<boolean>(false);
-
-  if (!chosenTopic) {
-  }
 
   const gradient =
     ((chosenTopic!.questions.indexOf(currentQuestion!) + 1) /
@@ -89,11 +86,12 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
             <SC.Scale now={gradient} />
           </SC.TextWrapper>
           <SC.OptionsList>
-            {currentQuestion!.options.map((el:any, idx:any) => (
+            {currentQuestion!.options.map((el: any, idx: any) => (
               <SC.OptionItem
                 key={el}
                 data-title={el}
                 onClick={chooseOption}
+                isHover={wrong || isCorrect ? "none" : "hover"}
                 stressedColor={
                   el === chosenOption && !wrong && !isCorrect
                     ? "stressed"
@@ -136,16 +134,16 @@ const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
                 <SC.Option>{el}</SC.Option>
               </SC.OptionItem>
             ))}
+            {!next ? (
+              <SC.SubmitButton onClick={handleSubmitAnswer}>
+                Submit Answer
+              </SC.SubmitButton>
+            ) : (
+              <SC.SubmitButton onClick={handleNextQuestion}>
+                Next Question
+              </SC.SubmitButton>
+            )}
           </SC.OptionsList>
-          {!next ? (
-            <SC.SubmitButton onClick={handleSubmitAnswer}>
-              Submit Answer
-            </SC.SubmitButton>
-          ) : (
-            <SC.SubmitButton onClick={handleNextQuestion}>
-              Next Question
-            </SC.SubmitButton>
-          )}
 
           <SC.ErrorWrapper visibility={!noOption ? "hidden" : "none"}>
             <img src={error} alt="error" />

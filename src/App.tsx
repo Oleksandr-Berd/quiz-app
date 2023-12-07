@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Dna } from "react-loader-spinner";
 
 import SharedLayout from "./layouts/SharedLayout/SharedLayout";
@@ -23,14 +23,11 @@ const App: React.FC = () => {
   } | null>(null);
   const { theme } = useContext(ThemeContext);
   const location = useLocation();
-  const navigate = useNavigate();
   useEffect(() => {
     if (location.pathname === "/") {
       setChosenTopic(null);
-    } else if (location.pathname === "/quiz" && !chosenTopic) {
-      navigate("/");
     }
-  }, [location, chosenTopic, navigate]);
+  }, [location]);
 
   const commonTheme = theme === "light" ? lightTheme : darkTheme;
 
@@ -55,6 +52,8 @@ const App: React.FC = () => {
 
     setChosenTopic(chosen![0]);
   };
+
+
 
   return (
     <>
@@ -85,7 +84,7 @@ const App: React.FC = () => {
               />
               <Route
                 path="/quiz"
-                element={<QuizPage chosenTopic={chosenTopic ?? chosenTopic} />}
+                element={<QuizPage chosenTopic={chosenTopic} />}
               />
             </Routes>
           )}
