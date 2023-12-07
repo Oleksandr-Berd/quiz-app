@@ -10,6 +10,13 @@ export const CommonCon = styled.div`
   padding-left: 24px;
   padding-right: 24px;
 
+  @media (min-width: 768px) {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   & > a {
     width: 100%;
 
@@ -28,6 +35,15 @@ export const CommonCon = styled.div`
     color: #fff;
 
     border-radius: 12px;
+
+    @media (min-width: 768px) {
+      padding-top: 32px;
+      padding-bottom: 32px;
+
+      font-size: 28px;
+
+      border-radius: 24px;
+    }
   }
 `;
 
@@ -42,6 +58,12 @@ export const Title = styled.h2`
   & > span {
     font-family: "RubicMedium";
   }
+
+  @media (min-width: 768px) {
+    margin-bottom: 64px;
+
+    font-size: 64px;
+  }
 `;
 
 export const ScoreWrapper = styled.div`
@@ -55,6 +77,13 @@ export const ScoreWrapper = styled.div`
   background-color: ${(props) => props.theme.color.itemBg};
 
   border-radius: 12px;
+
+  @media (min-width: 768px) {
+    padding-top: 48px;
+    padding-bottom: 48px;
+
+    margin-bottom: 32px;
+  }
 `;
 
 export const SubTitleWrapper = styled.div`
@@ -73,6 +102,16 @@ export const SubTitleWrapper = styled.div`
     font-family: "RubicMedium";
 
     color: ${(props) => props.theme.color.text};
+
+    @media (min-width: 768px) {
+      margin-left: 24px;
+
+      font-size: 28px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 40px;
   }
 `;
 
@@ -85,6 +124,15 @@ export const IconWrapper = styled.div<Style>`
   background-color: ${(props) => props.bg};
 
   border-radius: 6px;
+
+  @media (min-width: 768px) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 13px;
+    padding-right: 13px;
+
+    border-radius: 8px;
+  }
 `;
 
 export const Score = styled.p`
@@ -94,6 +142,10 @@ export const Score = styled.p`
   font-family: "RubicMedium";
 
   color: ${(props) => props.theme.color.text};
+
+  @media (min-width: 768px) {
+    font-size: 144px;
+  }
 `;
 
 export const Total = styled.p`
@@ -103,4 +155,9 @@ export const Total = styled.p`
   font-family: "RubicRegular";
 
   color: ${(props) => props.theme.color.smallText};
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    line-height: 1.5;
+  }
 `;

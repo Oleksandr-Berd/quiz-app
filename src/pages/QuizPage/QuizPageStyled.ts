@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 type Style = {
   gradient: string;
@@ -17,7 +18,7 @@ export const CommonCon = styled.div`
 
   @media (min-width: 768px) {
     padding-top: 49px;
-    padding-bottom: 57px;
+    padding-bottom: 129px;
     padding-left: 64px;
     padding-right: 64px;
   }
@@ -44,7 +45,7 @@ export const SmallText = styled.p`
   @media (min-width: 768px) {
     margin-bottom: 27px;
 
-    font-size: 12px;
+    font-size: 20px;
   }
 `;
 
@@ -64,17 +65,15 @@ export const Question = styled.h3`
   }
 `;
 
-export const Scale = styled.div<Partial<Style>>`
-  height: 16px;
+export const Scale = styled(ProgressBar)`
+  &&& {
+    background-color: #3b4d66;
+    border-radius: 999px;
+  }
 
-  background: linear-gradient(
-    to left,
-    rgb(59, 77, 102) ${(props) => props.gradientLeft},
-    rgb(167, 41, 245) ${(props) => props.gradient}
-  );
-
-  background-repeat: no-repeat;
-  border-radius: 999px;
+  &&& > div {
+    background-color: #a729f5;
+  }
 `;
 
 export const OptionsList = styled.ul`
@@ -217,7 +216,7 @@ export const ErrorWrapper = styled.div<Partial<Style>>`
   bottom: 0;
   left: 0;
 
-  transform: translateX(67px) translateY(-95px);
+  transform: translateX(226px) translateY(-59px);
 
   display: flex;
   flex-direction: row;
@@ -234,5 +233,10 @@ export const ErrorWrapper = styled.div<Partial<Style>>`
     font-family: "RubicRegular";
 
     color: ${(props) => props.theme.color.text};
+
+    @media (min-width: 768px){
+        font-size: 24px;
+        line-height: 1.5;
+    }
   }
 `;

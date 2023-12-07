@@ -56,6 +56,6 @@ margin-bottom: 0;
   color: ${props => props.theme.color.smallText};
 
   @media (min-width: 768px){
-    font-size: 12px;
+    font-size: 20px;
   }
 `;

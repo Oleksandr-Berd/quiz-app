@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import * as SC from "./QuizPageStyled";
 import error from "../../assets/images/icon-error.svg";
-import wrongIcon from "../../assets/images/icon-incorrect.svg"
-import correctIcon from "../../assets/images/icon-correct.svg"
+import wrongIcon from "../../assets/images/icon-incorrect.svg";
+import correctIcon from "../../assets/images/icon-correct.svg";
 
 import Result from "../../components/Result/Result";
 
@@ -20,35 +21,26 @@ type Props = {
   } | null;
 };
 
+  
+
 const QuizPage: React.FC<Props> = ({ chosenTopic }) => {
-  const [isCorrect, setIsCorrect] = useState<boolean>(false)
+  const [isCorrect, setIsCorrect] = useState<boolean>(false);
   const [chosenOption, setChosenOption] = useState<string | null>(null);
   const [correct, setCorrect] = useState<number>(0);
-  const [wrong, setWrong] = useState<number>(0)
+  const [wrong, setWrong] = useState<number>(0);
   const [noOption, setNoOption] = useState<boolean | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(
     chosenTopic?.questions[0]
   );
-  const [next, setNext] = useState<boolean>(false)
+  const [next, setNext] = useState<boolean>(false);
 
-  const gradient = 
+  if (!chosenTopic) {
+  }
+
+  const gradient =
     ((chosenTopic!.questions.indexOf(currentQuestion!) + 1) /
       chosenTopic!.questions.length) *
-      100 +
-    "%";
-  const gradientLeft =
-    100 -
-    ((chosenTopic!.questions.indexOf(currentQuestion!) + 1) /
-      chosenTopic!.questions.length) *
-      100 +
-    "%";
-
-  
-
-console.log(gradient);
-console.log(gradientLeft);
-
-
+    100;
 
   const chooseOption = (evt: any) => {
     setNoOption(false);
@@ -62,22 +54,21 @@ console.log(gradientLeft);
       setNoOption(true);
     } else if (chosenOption === currentQuestion!.answer) {
       setCorrect((prev) => prev + 1);
-      setIsCorrect(true)
-      setNext(true)
+      setIsCorrect(true);
+      setNext(true);
     } else {
       setWrong((prev) => prev + 1);
-       setNext(true);
+      setNext(true);
     }
   };
 
   const handleNextQuestion = () => {
     setChosenOption(null);
-    setNext(false)
-    setWrong(0)
-    setIsCorrect(false)
+    setNext(false);
+    setWrong(0);
+    setIsCorrect(false);
     setCurrentQuestion(chosenTopic!.questions[currentIdx + 1]);
   };
-
 
   return (
     <SC.CommonCon>
@@ -95,13 +86,10 @@ console.log(gradientLeft);
               Questions {currentIdx + 1} of {chosenTopic!.questions.length}
             </SC.SmallText>
             <SC.Question>{currentQuestion!.question}</SC.Question>
-            <SC.Scale
-              gradient={gradient}
-              gradientLeft={gradientLeft}
-            ></SC.Scale>
+            <SC.Scale now={gradient} />
           </SC.TextWrapper>
           <SC.OptionsList>
-            {currentQuestion!.options.map((el, idx) => (
+            {currentQuestion!.options.map((el:any, idx:any) => (
               <SC.OptionItem
                 key={el}
                 data-title={el}
@@ -119,7 +107,9 @@ console.log(gradientLeft);
                 {el === chosenOption && wrong ? (
                   <img src={wrongIcon} alt="wrong" />
                 ) : null}
-                {el === currentQuestion!.answer && chosenOption && (wrong || isCorrect) ? (
+                {el === currentQuestion!.answer &&
+                chosenOption &&
+                (wrong || isCorrect) ? (
                   <img src={correctIcon} alt="correct" />
                 ) : null}
                 <SC.LetterWrapper
