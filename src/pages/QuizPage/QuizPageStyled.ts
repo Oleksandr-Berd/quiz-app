@@ -14,10 +14,21 @@ export const CommonCon = styled.div`
   padding-bottom: 139px;
   padding-left: 24px;
   padding-right: 24px;
+
+  @media (min-width: 768px) {
+    padding-top: 49px;
+    padding-bottom: 57px;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
 `;
 
 export const TextWrapper = styled.div`
   margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 64px;
+  }
 `;
 
 export const SmallText = styled.p`
@@ -29,6 +40,12 @@ export const SmallText = styled.p`
   line-height: 1.5;
 
   color: ${(props) => props.theme.color.smallText};
+
+  @media (min-width: 768px) {
+    margin-bottom: 27px;
+
+    font-size: 12px;
+  }
 `;
 
 export const Question = styled.h3`
@@ -39,6 +56,12 @@ export const Question = styled.h3`
   font-family: "RubicMedium";
 
   color: ${(props) => props.theme.color.text};
+
+  @media (min-width: 768px) {
+    margin-bottom: 40px;
+
+    font-size: 36px;
+  }
 `;
 
 export const Scale = styled.div<Partial<Style>>`
@@ -58,10 +81,14 @@ export const OptionsList = styled.ul`
   padding-left: 0;
 
   margin-bottom: 12px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 32px;
+  }
 `;
 
 export const OptionItem = styled.li<Partial<Style>>`
-position: relative;
+  position: relative;
 
   display: flex;
   flex-direction: row;
@@ -85,22 +112,30 @@ position: relative;
       ? "3px solid #26D782"
       : "none"};
 
-  &:not(:last-child) {
-    margin-bottom: 12px;
+  @media (min-width: 768px) {
+    height: 80px;
   }
 
-& > img{
+  &:not(:last-child) {
+    margin-bottom: 12px;
+
+    @media (min-width: 768px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  & > img {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
 
     /* transform: translateX(-8px) translateY(10px); */
     transform: translateX(-25%) translateY(25%);
-}
+  }
 `;
 
 export const Option = styled.p`
-max-width: 60%;
+  max-width: 60%;
 
   margin-bottom: 0px;
   margin-left: 16px;
@@ -109,6 +144,12 @@ max-width: 60%;
   font-family: "RubicMedium";
 
   color: ${(props) => props.theme.color.text};
+
+  @media (min-width: 768px) {
+    margin-left: 32px;
+
+    font-size: 28px;
+  }
 `;
 
 export const LetterWrapper = styled.div<Partial<Style>>`
@@ -138,6 +179,13 @@ export const LetterWrapper = styled.div<Partial<Style>>`
       : "#f4f6fa"};
 
   border-radius: 6px;
+
+  @media (min-width: 768px) {
+    width: 56px;
+    height: 56px;
+
+    font-size: 28px;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -155,6 +203,13 @@ export const SubmitButton = styled.button`
   background-color: #a729f5;
 
   border-radius: 12px;
+
+  @media (min-width: 768px){
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    font-size: 28px;
+  }
 `;
 
 export const ErrorWrapper = styled.div<Partial<Style>>`

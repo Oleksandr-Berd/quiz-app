@@ -22,6 +22,10 @@ export const ListItem = styled.li`
 
   &:not(:last-child) {
     margin-bottom: 12px;
+
+    @media (min-width: 768px){
+      margin-bottom: 24px;
+    }
   }
 
   & > a {
@@ -34,6 +38,12 @@ export const ListItem = styled.li`
     font-size: 18px;
 
     color: ${(props) => props.theme.color.text};
+
+    @media (min-width: 768px){
+      margin-left: 32px;
+
+      font-size: 28px;
+    }
   }
 `;
 
@@ -53,4 +63,11 @@ export const IconWrapper = styled.div`
       : "#F6E7FF"};
 
   border-radius: 6px;
+
+  @media (min-width: 768px) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 `;

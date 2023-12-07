@@ -54,11 +54,10 @@ switch (chosenTopic?.title) {
       <SC.SwitchCon>
         <img src={theme === "light" ? sunDark : sunLight} alt="sun" />
         <Form>
-          <Form.Check // prettier-ignore
+          <Form.Check 
             type="switch"
             id="custom-switch"
             onClick={toggleTheme}
-            //   label="Check this switch"
           />
         </Form>
         <img src={theme === "light" ? moonDark : moonLight} alt="moon" />

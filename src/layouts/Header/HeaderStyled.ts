@@ -16,6 +16,13 @@ export const HeaderStyled = styled.header<Partial<Style>>`
   padding-bottom: 16px;
   padding-left: 24px;
   padding-right: 24px;
+
+  @media (min-width: 768px){
+    padding-top: 40px;
+    padding-bottom: 0;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
 `;
 
 export const SwitchCon = styled.div`
@@ -25,6 +32,16 @@ export const SwitchCon = styled.div`
 
   & > img:first-of-type {
     margin-right: 8px;
+
+    @media (min-width: 768px) {
+      margin-right: 15px;
+    }
+  }
+
+  & > img:last-child {
+    @media (min-width: 768px) {
+      margin-left: 8px;
+    }
   }
 `;
 
@@ -46,11 +63,15 @@ export const IconWrapper = styled.div<Partial<Style>>`
 `;
 
 export const TopicTitle = styled.p`
-  margin-top: 11px;
-  margin-left: 16px;
+  margin-bottom: 0px;
+  margin-left: 24px;
 
   font-family: "RubicMedium";
   font-size: 18px;
 
   color: ${(props) => props.theme.color.text};
+
+  @media (min-width: 768px){
+    font-size: 28px;
+  }
 `;

@@ -9,13 +9,13 @@ type Props = {
 const HomePage: React.FC<Props> = ({ data, handleTopic }) => {
   return (
     <SC.CommonCon>
-      <div>
+      <SC.TextCon>
         <SC.Title>
           Welcome to the <span>Frontend Quiz!</span>
         </SC.Title>
         <SC.Text>Pick a subject to get started</SC.Text>
-        <TopicsList topics={data ? data : null} handleTopic={handleTopic} />
-      </div>
+      </SC.TextCon>
+      <TopicsList topics={data ? data : null} handleTopic={handleTopic} />
     </SC.CommonCon>
   );
 };
